@@ -1,8 +1,8 @@
-"use client"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Clock, DollarSign, Check } from "lucide-react"
+"use client";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Clock, DollarSign, Check } from "lucide-react";
 
 const services = [
   {
@@ -35,19 +35,25 @@ const services = [
     duration: "2 hours",
     price: 120,
     description: "Learn professional techniques in personalized sessions",
-    features: ["Personalized instruction", "Product recommendations", "Take-home guide"],
+    features: [
+      "Personalized instruction",
+      "Product recommendations",
+      "Take-home guide",
+    ],
   },
-]
+];
 
 export function ServiceSelection({ selectedService, onServiceSelect, onNext }) {
   const handleServiceSelect = (service) => {
-    onServiceSelect(service)
-  }
+    onServiceSelect(service);
+  };
 
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="section-heading text-foreground mb-2">Choose Your Service</h2>
+        <h2 className="section-heading text-foreground mb-2">
+          Choose Your Service
+        </h2>
         <p className="body-text text-muted-foreground">
           Select the makeup service that best fits your needs and occasion.
         </p>
@@ -58,13 +64,17 @@ export function ServiceSelection({ selectedService, onServiceSelect, onNext }) {
           <Card
             key={service.id}
             className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-              selectedService?.id === service.id ? "ring-2 ring-primary border-primary" : "hover:border-primary/50"
+              selectedService?.id === service.id
+                ? "ring-2 ring-primary border-primary"
+                : "hover:border-primary/50"
             }`}
             onClick={() => handleServiceSelect(service)}
           >
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
-                <h3 className="font-serif text-xl font-semibold">{service.title}</h3>
+                <h3 className="font-serif text-xl font-semibold">
+                  {service.title}
+                </h3>
                 {selectedService?.id === service.id && (
                   <Badge className="bg-primary text-primary-foreground">
                     <Check className="h-3 w-3 mr-1" />
@@ -73,7 +83,9 @@ export function ServiceSelection({ selectedService, onServiceSelect, onNext }) {
                 )}
               </div>
 
-              <p className="body-text text-muted-foreground mb-4">{service.description}</p>
+              <p className="body-text text-muted-foreground mb-4">
+                {service.description}
+              </p>
 
               <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
@@ -109,5 +121,5 @@ export function ServiceSelection({ selectedService, onServiceSelect, onNext }) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-"use client"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Clock, DollarSign, Check } from "lucide-react"
-import Link from "next/link"
+"use client";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Clock, DollarSign, Check } from "lucide-react";
+import Link from "next/link";
 
 export function ServiceCard({ service }) {
   return (
@@ -14,13 +14,19 @@ export function ServiceCard({ service }) {
           alt={service.title}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">{service.category || 'Service'}</Badge>
+        <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
+          {service.category || "Service"}
+        </Badge>
       </div>
 
       <CardContent className="p-6 flex flex-col h-full">
         <div className="flex-1">
-          <h3 className="font-serif text-xl font-semibold mb-2">{service.title}</h3>
-          <p className="body-text text-muted-foreground mb-4">{service.description}</p>
+          <h3 className="font-serif text-xl font-semibold mb-2">
+            {service.title}
+          </h3>
+          <p className="body-text text-muted-foreground mb-4">
+            {service.description}
+          </p>
 
           <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1">
@@ -43,10 +49,13 @@ export function ServiceCard({ service }) {
           </div>
         </div>
 
-        <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button
+          asChild
+          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+        >
           <Link href={`/booking?service=${service.id}`}>Book This Service</Link>
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

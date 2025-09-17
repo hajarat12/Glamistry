@@ -1,18 +1,32 @@
-"use client"
+"use client";
 
-import React from "react"
-import { Layout } from "@/components/Layout"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ShoppingBag, Star, Plus, Search, Grid, List, Heart } from "lucide-react"
-import { motion } from "framer-motion"
-import { fadeInAnimation, staggerChildrenTransition } from "@/lib/animations"
-import foundationImage from "@/assets/product-foundation.jpg"
-import brushesImage from "@/assets/product-brushes.jpg"
-import eyeshadowImage from "@/assets/product-eyeshadow.jpg"
-import productsImage from "@/assets/products-hero.jpg"
+import React from "react";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  ShoppingBag,
+  Star,
+  Plus,
+  Search,
+  Grid,
+  List,
+  Heart,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeInAnimation, staggerChildrenTransition } from "@/lib/animations";
+import foundationImage from "@/assets/product-foundation.jpg";
+import brushesImage from "@/assets/product-brushes.jpg";
+import eyeshadowImage from "@/assets/product-eyeshadow.jpg";
+import productsImage from "@/assets/products-hero.jpg";
 
 const products = [
   {
@@ -127,63 +141,76 @@ const products = [
     description: "Complete contouring and highlighting kit",
     inStock: true,
   },
-]
+];
 
-const categories = ["All", "Foundation", "Concealer", "Eyes", "Lips", "Face", "Tools"]
+const categories = [
+  "All",
+  "Foundation",
+  "Concealer",
+  "Eyes",
+  "Lips",
+  "Face",
+  "Tools",
+];
 const sortOptions = [
   { value: "featured", label: "Featured" },
   { value: "price-low", label: "Price: Low to High" },
   { value: "price-high", label: "Price: High to Low" },
   { value: "rating", label: "Highest Rated" },
   { value: "newest", label: "Newest" },
-]
+];
 
 const Shop = () => {
-  const [searchQuery, setSearchQuery] = React.useState("")
-  const [selectedCategory, setSelectedCategory] = React.useState("All")
-  const [sortBy, setSortBy] = React.useState("featured")
-  const [viewMode, setViewMode] = React.useState("grid")
-  const [favorites, setFavorites] = React.useState([])
-  const [cart, setCart] = React.useState([])
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState("All");
+  const [sortBy, setSortBy] = React.useState("featured");
+  const [viewMode, setViewMode] = React.useState("grid");
+  const [favorites, setFavorites] = React.useState([]);
+  const [cart, setCart] = React.useState([]);
 
   const toggleFavorite = (productId) => {
-    setFavorites((prev) => (prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]))
-  }
+    setFavorites((prev) =>
+      prev.includes(productId)
+        ? prev.filter((id) => id !== productId)
+        : [...prev, productId]
+    );
+  };
 
   const addToCart = (productId) => {
-    setCart((prev) => [...prev, productId])
-  }
+    setCart((prev) => [...prev, productId]);
+  };
 
   const filteredProducts = React.useMemo(() => {
     const filtered = products.filter((product) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchesCategory = selectedCategory === "All" || product.category === selectedCategory
-      return matchesSearch && matchesCategory
-    })
+        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "All" || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
 
     // Sort products
     switch (sortBy) {
       case "price-low":
-        filtered.sort((a, b) => a.price - b.price)
-        break
+        filtered.sort((a, b) => a.price - b.price);
+        break;
       case "price-high":
-        filtered.sort((a, b) => b.price - a.price)
-        break
+        filtered.sort((a, b) => b.price - a.price);
+        break;
       case "rating":
-        filtered.sort((a, b) => b.rating - a.rating)
-        break
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
       case "newest":
-        filtered.sort((a, b) => b.id - a.id)
-        break
+        filtered.sort((a, b) => b.id - a.id);
+        break;
       default:
         // Featured - keep original order
-        break
+        break;
     }
 
-    return filtered
-  }, [searchQuery, selectedCategory, sortBy])
+    return filtered;
+  }, [searchQuery, selectedCategory, sortBy]);
 
   return (
     <Layout>
@@ -192,10 +219,12 @@ const Shop = () => {
         <section className="py-12 bg-gradient-to-r from-dark-teal to-forest-green">
           <div className="container mx-auto px-4">
             <motion.div className="text-center text-white" {...fadeInAnimation}>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Shop Our Collection</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Shop Our Collection
+              </h1>
               <p className="text-xl opacity-90 max-w-2xl mx-auto">
-                Discover premium makeup products chosen for their quality, performance, and ability to enhance your
-                natural beauty.
+                Discover premium makeup products chosen for their quality,
+                performance, and ability to enhance your natural beauty.
               </p>
             </motion.div>
           </div>
@@ -226,7 +255,9 @@ const Shop = () => {
                   {categories.map((category) => (
                     <Button
                       key={category}
-                      variant={selectedCategory === category ? "default" : "outline"}
+                      variant={
+                        selectedCategory === category ? "default" : "outline"
+                      }
                       size="sm"
                       onClick={() => setSelectedCategory(category)}
                       className={`whitespace-nowrap ${
@@ -264,7 +295,9 @@ const Shop = () => {
                     size="sm"
                     onClick={() => setViewMode("grid")}
                     className={`rounded-none border-none ${
-                      viewMode === "grid" ? "bg-mustard hover:bg-mustard/90" : ""
+                      viewMode === "grid"
+                        ? "bg-mustard hover:bg-mustard/90"
+                        : ""
                     }`}
                   >
                     <Grid className="w-4 h-4" />
@@ -274,7 +307,9 @@ const Shop = () => {
                     size="sm"
                     onClick={() => setViewMode("list")}
                     className={`rounded-none border-none ${
-                      viewMode === "list" ? "bg-mustard hover:bg-mustard/90" : ""
+                      viewMode === "list"
+                        ? "bg-mustard hover:bg-mustard/90"
+                        : ""
                     }`}
                   >
                     <List className="w-4 h-4" />
@@ -284,7 +319,10 @@ const Shop = () => {
             </motion.div>
 
             {/* Results count */}
-            <motion.div className="mt-6 text-sm text-muted-foreground" {...fadeInAnimation}>
+            <motion.div
+              className="mt-6 text-sm text-muted-foreground"
+              {...fadeInAnimation}
+            >
               Showing {filteredProducts.length} products
               {selectedCategory !== "All" && ` in ${selectedCategory}`}
               {searchQuery && ` matching "${searchQuery}"`}
@@ -298,12 +336,16 @@ const Shop = () => {
             {filteredProducts.length === 0 ? (
               <motion.div className="text-center py-16" {...fadeInAnimation}>
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-semibold mb-2">No products found</h3>
-                <p className="text-muted-foreground mb-6">Try adjusting your search or filter criteria</p>
+                <h3 className="text-2xl font-semibold mb-2">
+                  No products found
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Try adjusting your search or filter criteria
+                </p>
                 <Button
                   onClick={() => {
-                    setSearchQuery("")
-                    setSelectedCategory("All")
+                    setSearchQuery("");
+                    setSelectedCategory("All");
                   }}
                   className="bg-mustard hover:bg-mustard/90"
                 >
@@ -323,7 +365,11 @@ const Shop = () => {
                   <motion.div
                     key={product.id}
                     {...fadeInAnimation}
-                    className={`group ${viewMode === "list" ? "flex gap-6 p-6 bg-card rounded-2xl shadow-soft" : ""}`}
+                    className={`group ${
+                      viewMode === "list"
+                        ? "flex gap-6 p-6 bg-card rounded-2xl shadow-soft"
+                        : ""
+                    }`}
                   >
                     {viewMode === "grid" ? (
                       // Grid View
@@ -332,7 +378,11 @@ const Shop = () => {
                         <div className="relative overflow-hidden rounded-t-2xl">
                           {product.badge && (
                             <div className="absolute top-3 left-3 z-10">
-                              <Badge className={`${product.badgeColor} text-white`}>{product.badge}</Badge>
+                              <Badge
+                                className={`${product.badgeColor} text-white`}
+                              >
+                                {product.badge}
+                              </Badge>
                             </div>
                           )}
 
@@ -357,7 +407,9 @@ const Shop = () => {
 
                           {!product.inStock && (
                             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                              <span className="text-white font-semibold">Out of Stock</span>
+                              <span className="text-white font-semibold">
+                                Out of Stock
+                              </span>
                             </div>
                           )}
 
@@ -379,21 +431,31 @@ const Shop = () => {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-1">
                               <Star className="w-4 h-4 fill-mustard text-mustard" />
-                              <span className="text-sm font-medium">{product.rating}</span>
-                              <span className="text-sm text-muted-foreground">({product.reviews})</span>
+                              <span className="text-sm font-medium">
+                                {product.rating}
+                              </span>
+                              <span className="text-sm text-muted-foreground">
+                                ({product.reviews})
+                              </span>
                             </div>
-                            <span className="text-xs text-muted-foreground">{product.category}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {product.category}
+                            </span>
                           </div>
 
                           <h3 className="font-semibold text-foreground group-hover:text-mustard transition-colors">
                             {product.name}
                           </h3>
 
-                          <p className="text-sm text-muted-foreground">{product.description}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {product.description}
+                          </p>
 
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <span className="text-lg font-bold text-mustard">${product.price}</span>
+                              <span className="text-lg font-bold text-mustard">
+                                ${product.price}
+                              </span>
                               {product.originalPrice && (
                                 <span className="text-sm text-muted-foreground line-through">
                                   ${product.originalPrice}
@@ -402,7 +464,11 @@ const Shop = () => {
                             </div>
                           </div>
 
-                          <Button className="w-full" onClick={() => addToCart(product.id)} disabled={!product.inStock}>
+                          <Button
+                            className="w-full"
+                            onClick={() => addToCart(product.id)}
+                            disabled={!product.inStock}
+                          >
                             <ShoppingBag className="w-4 h-4 mr-2" />
                             {product.inStock ? "Add to Cart" : "Out of Stock"}
                           </Button>
@@ -414,7 +480,11 @@ const Shop = () => {
                         <div className="relative w-48 h-32 flex-shrink-0">
                           {product.badge && (
                             <div className="absolute top-2 left-2 z-10">
-                              <Badge className={`${product.badgeColor} text-white text-xs`}>{product.badge}</Badge>
+                              <Badge
+                                className={`${product.badgeColor} text-white text-xs`}
+                              >
+                                {product.badge}
+                              </Badge>
                             </div>
                           )}
 
@@ -426,7 +496,9 @@ const Shop = () => {
 
                           {!product.inStock && (
                             <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-xl">
-                              <span className="text-white text-sm font-semibold">Out of Stock</span>
+                              <span className="text-white text-sm font-semibold">
+                                Out of Stock
+                              </span>
                             </div>
                           )}
                         </div>
@@ -434,8 +506,12 @@ const Shop = () => {
                         <div className="flex-1 space-y-2">
                           <div className="flex items-start justify-between">
                             <div>
-                              <h3 className="text-xl font-semibold text-foreground">{product.name}</h3>
-                              <p className="text-muted-foreground">{product.description}</p>
+                              <h3 className="text-xl font-semibold text-foreground">
+                                {product.name}
+                              </h3>
+                              <p className="text-muted-foreground">
+                                {product.description}
+                              </p>
                             </div>
                             <button
                               onClick={() => toggleFavorite(product.id)}
@@ -454,15 +530,21 @@ const Shop = () => {
                           <div className="flex items-center space-x-4">
                             <div className="flex items-center space-x-1">
                               <Star className="w-4 h-4 fill-mustard text-mustard" />
-                              <span className="font-medium">{product.rating}</span>
-                              <span className="text-muted-foreground">({product.reviews} reviews)</span>
+                              <span className="font-medium">
+                                {product.rating}
+                              </span>
+                              <span className="text-muted-foreground">
+                                ({product.reviews} reviews)
+                              </span>
                             </div>
                             <Badge variant="outline">{product.category}</Badge>
                           </div>
 
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <span className="text-2xl font-bold text-mustard">${product.price}</span>
+                              <span className="text-2xl font-bold text-mustard">
+                                ${product.price}
+                              </span>
                               {product.originalPrice && (
                                 <span className="text-lg text-muted-foreground line-through">
                                   ${product.originalPrice}
@@ -470,7 +552,11 @@ const Shop = () => {
                               )}
                             </div>
 
-                            <Button onClick={() => addToCart(product.id)} disabled={!product.inStock} className="px-6">
+                            <Button
+                              onClick={() => addToCart(product.id)}
+                              disabled={!product.inStock}
+                              className="px-6"
+                            >
                               <ShoppingBag className="w-4 h-4 mr-2" />
                               {product.inStock ? "Add to Cart" : "Out of Stock"}
                             </Button>
@@ -486,7 +572,7 @@ const Shop = () => {
         </section>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;

@@ -1,14 +1,19 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { ChevronLeft, ChevronRight, User } from "lucide-react"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { ChevronLeft, ChevronRight, User } from "lucide-react";
 
-export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }) {
+export function ClientDetails({
+  clientDetails,
+  onDetailsUpdate,
+  onNext,
+  onPrev,
+}) {
   const [formData, setFormData] = useState({
     firstName: clientDetails?.firstName || "",
     lastName: clientDetails?.lastName || "",
@@ -17,46 +22,46 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
     notes: clientDetails?.notes || "",
     promoCode: clientDetails?.promoCode || "",
     ...clientDetails,
-  })
+  });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
+    setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: "" }))
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
-  }
+  };
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required"
+      newErrors.firstName = "First name is required";
     }
     if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required"
+      newErrors.lastName = "Last name is required";
     }
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email"
+      newErrors.email = "Please enter a valid email";
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required"
+      newErrors.phone = "Phone number is required";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleNext = () => {
     if (validateForm()) {
-      onDetailsUpdate(formData)
-      onNext()
+      onDetailsUpdate(formData);
+      onNext();
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -84,7 +89,9 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
                 className={errors.firstName ? "border-destructive" : ""}
               />
-              {errors.firstName && <p className="text-sm text-destructive">{errors.firstName}</p>}
+              {errors.firstName && (
+                <p className="text-sm text-destructive">{errors.firstName}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="lastName">Last Name *</Label>
@@ -94,7 +101,9 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
                 className={errors.lastName ? "border-destructive" : ""}
               />
-              {errors.lastName && <p className="text-sm text-destructive">{errors.lastName}</p>}
+              {errors.lastName && (
+                <p className="text-sm text-destructive">{errors.lastName}</p>
+              )}
             </div>
           </div>
 
@@ -107,7 +116,9 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
               onChange={(e) => handleInputChange("email", e.target.value)}
               className={errors.email ? "border-destructive" : ""}
             />
-            {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-sm text-destructive">{errors.email}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -119,7 +130,9 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
               onChange={(e) => handleInputChange("phone", e.target.value)}
               className={errors.phone ? "border-destructive" : ""}
             />
-            {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+            {errors.phone && (
+              <p className="text-sm text-destructive">{errors.phone}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -150,11 +163,14 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
           <ChevronLeft className="h-4 w-4 mr-2" />
           Back to Date & Time
         </Button>
-        <Button onClick={handleNext} className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button
+          onClick={handleNext}
+          className="bg-primary text-primary-foreground hover:bg-primary/90"
+        >
           Review Booking
           <ChevronRight className="h-4 w-4 ml-2" />
         </Button>
       </div>
     </div>
-  )
+  );
 }

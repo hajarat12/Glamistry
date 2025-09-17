@@ -1,55 +1,61 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function FilterBar({ services, onFilter }) {
-  const [activeCategory, setActiveCategory] = useState("all")
-  const [priceRange, setPriceRange] = useState("all")
-  const [occasion, setOccasion] = useState("all")
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [priceRange, setPriceRange] = useState("all");
+  const [occasion, setOccasion] = useState("all");
 
-  const categories = ["all", ...new Set(services.map((s) => s.category))]
-  const occasions = ["all", ...new Set(services.map((s) => s.occasion))]
+  const categories = ["all", ...new Set(services.map((s) => s.category))];
+  const occasions = ["all", ...new Set(services.map((s) => s.occasion))];
 
   const applyFilters = (category, price, occ) => {
-    let filtered = services
+    let filtered = services;
 
     if (category !== "all") {
-      filtered = filtered.filter((s) => s.category === category)
+      filtered = filtered.filter((s) => s.category === category);
     }
 
     if (price !== "all") {
       if (price === "low") {
-        filtered = filtered.filter((s) => s.price <= 150)
+        filtered = filtered.filter((s) => s.price <= 150);
       } else if (price === "medium") {
-        filtered = filtered.filter((s) => s.price > 150 && s.price <= 250)
+        filtered = filtered.filter((s) => s.price > 150 && s.price <= 250);
       } else if (price === "high") {
-        filtered = filtered.filter((s) => s.price > 250)
+        filtered = filtered.filter((s) => s.price > 250);
       }
     }
 
     if (occ !== "all") {
-      filtered = filtered.filter((s) => s.occasion === occ)
+      filtered = filtered.filter((s) => s.occasion === occ);
     }
 
-    onFilter(filtered)
-  }
+    onFilter(filtered);
+  };
 
   const handleCategoryChange = (category) => {
-    setActiveCategory(category)
-    applyFilters(category, priceRange, occasion)
-  }
+    setActiveCategory(category);
+    applyFilters(category, priceRange, occasion);
+  };
 
   const handlePriceChange = (price) => {
-    setPriceRange(price)
-    applyFilters(activeCategory, price, occasion)
-  }
+    setPriceRange(price);
+    applyFilters(activeCategory, price, occasion);
+  };
 
   const handleOccasionChange = (occ) => {
-    setOccasion(occ)
-    applyFilters(activeCategory, priceRange, occ)
-  }
+    setOccasion(occ);
+    applyFilters(activeCategory, priceRange, occ);
+  };
 
   return (
     <div className="bg-muted/30 p-6 rounded-lg">
@@ -111,5 +117,5 @@ export function FilterBar({ services, onFilter }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

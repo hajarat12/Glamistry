@@ -1,12 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { ChevronLeft, ChevronRight, Clock } from "lucide-react"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 
-const timeSlots = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"]
+const timeSlots = [
+  "9:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "1:00 PM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+  "5:00 PM",
+];
 
 export function DateTimeSelection({
   selectedDate,
@@ -16,20 +26,22 @@ export function DateTimeSelection({
   onNext,
   onPrev,
 }) {
-  const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const isTimeSlotAvailable = (time) => {
     // Mock availability logic - in real app, this would check against backend
-    const unavailableSlots = ["11:00 AM", "2:00 PM", "4:00 PM"]
-    return !unavailableSlots.includes(time)
-  }
+    const unavailableSlots = ["11:00 AM", "2:00 PM", "4:00 PM"];
+    return !unavailableSlots.includes(time);
+  };
 
-  const canProceed = selectedDate && selectedTime
+  const canProceed = selectedDate && selectedTime;
 
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="section-heading text-foreground mb-2">Select Date & Time</h2>
+        <h2 className="section-heading text-foreground mb-2">
+          Select Date & Time
+        </h2>
         <p className="body-text text-muted-foreground">
           Choose your preferred date and time slot for your makeup session.
         </p>
@@ -67,8 +79,8 @@ export function DateTimeSelection({
             {selectedDate ? (
               <div className="grid grid-cols-2 gap-3">
                 {timeSlots.map((time) => {
-                  const isAvailable = isTimeSlotAvailable(time)
-                  const isSelected = selectedTime === time
+                  const isAvailable = isTimeSlotAvailable(time);
+                  const isSelected = selectedTime === time;
 
                   return (
                     <Button
@@ -80,14 +92,16 @@ export function DateTimeSelection({
                         isSelected
                           ? "bg-primary text-primary-foreground"
                           : isAvailable
-                            ? "hover:bg-primary/10"
-                            : "opacity-50 cursor-not-allowed"
+                          ? "hover:bg-primary/10"
+                          : "opacity-50 cursor-not-allowed"
                       }`}
                     >
                       {time}
-                      {!isAvailable && <span className="ml-1 text-xs">(Booked)</span>}
+                      {!isAvailable && (
+                        <span className="ml-1 text-xs">(Booked)</span>
+                      )}
                     </Button>
-                  )
+                  );
                 })}
               </div>
             ) : (
@@ -114,5 +128,5 @@ export function DateTimeSelection({
         </Button>
       </div>
     </div>
-  )
+  );
 }
