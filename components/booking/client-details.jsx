@@ -8,14 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { ChevronLeft, ChevronRight, User } from "lucide-react"
 
-interface ClientDetailsProps {
-  clientDetails: any
-  onDetailsUpdate: (details: any) => void
-  onNext: () => void
-  onPrev: () => void
-}
-
-export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }: ClientDetailsProps) {
+export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }) {
   const [formData, setFormData] = useState({
     firstName: clientDetails?.firstName || "",
     lastName: clientDetails?.lastName || "",
@@ -28,7 +21,7 @@ export function ClientDetails({ clientDetails, onDetailsUpdate, onNext, onPrev }
 
   const [errors, setErrors] = useState({})
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     // Clear error when user starts typing
     if (errors[field]) {

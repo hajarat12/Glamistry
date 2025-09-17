@@ -7,12 +7,7 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { ChevronLeft, Calendar, Clock, User, CreditCard, Check } from "lucide-react"
 
-interface BookingSummaryProps {
-  bookingData: any
-  onPrev: () => void
-}
-
-export function BookingSummary({ bookingData, onPrev }: BookingSummaryProps) {
+export function BookingSummary({ bookingData, onPrev }) {
   const [isProcessing, setIsProcessing] = useState(false)
   const [isConfirmed, setIsConfirmed] = useState(false)
 

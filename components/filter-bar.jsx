@@ -4,24 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-interface Service {
-  id: number
-  title: string
-  duration: string
-  price: number
-  category: string
-  occasion: string
-  description: string
-  features: string[]
-  image: string
-}
-
-interface FilterBarProps {
-  services: Service[]
-  onFilter: (filteredServices: Service[]) => void
-}
-
-export function FilterBar({ services, onFilter }: FilterBarProps) {
+export function FilterBar({ services, onFilter }) {
   const [activeCategory, setActiveCategory] = useState("all")
   const [priceRange, setPriceRange] = useState("all")
   const [occasion, setOccasion] = useState("all")
@@ -29,7 +12,7 @@ export function FilterBar({ services, onFilter }: FilterBarProps) {
   const categories = ["all", ...new Set(services.map((s) => s.category))]
   const occasions = ["all", ...new Set(services.map((s) => s.occasion))]
 
-  const applyFilters = (category: string, price: string, occ: string) => {
+  const applyFilters = (category, price, occ) => {
     let filtered = services
 
     if (category !== "all") {
@@ -53,17 +36,17 @@ export function FilterBar({ services, onFilter }: FilterBarProps) {
     onFilter(filtered)
   }
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category) => {
     setActiveCategory(category)
     applyFilters(category, priceRange, occasion)
   }
 
-  const handlePriceChange = (price: string) => {
+  const handlePriceChange = (price) => {
     setPriceRange(price)
     applyFilters(activeCategory, price, occasion)
   }
 
-  const handleOccasionChange = (occ: string) => {
+  const handleOccasionChange = (occ) => {
     setOccasion(occ)
     applyFilters(activeCategory, priceRange, occ)
   }

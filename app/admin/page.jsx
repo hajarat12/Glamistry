@@ -107,7 +107,7 @@ const recentOrders = [
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case "confirmed":
       case "delivered":

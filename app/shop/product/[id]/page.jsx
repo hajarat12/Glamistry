@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Star, ShoppingCart, Heart, Minus, Plus, Truck, Shield, RotateCcw, ArrowLeft } from "lucide-react"
 import { containerVariants, itemVariants } from "@/lib/motion-variants"
 
-const getProduct = (id: string) => {
+const getProduct = (id) => {
   const products = {
     "1": {
       id: 1,
@@ -185,7 +185,7 @@ const getProduct = (id: string) => {
 
 export default function ProductPage() {
   const params = useParams()
-  const product = getProduct(params.id as string)
+  const product = getProduct(params.id )
   const [selectedImage, setSelectedImage] = useState(0)
   const [selectedShade, setSelectedShade] = useState("")
   const [quantity, setQuantity] = useState(1)

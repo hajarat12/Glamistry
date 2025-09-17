@@ -142,15 +142,15 @@ const Shop = () => {
   const [searchQuery, setSearchQuery] = React.useState("")
   const [selectedCategory, setSelectedCategory] = React.useState("All")
   const [sortBy, setSortBy] = React.useState("featured")
-  const [viewMode, setViewMode] = React.useState<"grid" | "list">("grid")
-  const [favorites, setFavorites] = React.useState<number[]>([])
-  const [cart, setCart] = React.useState<number[]>([])
+  const [viewMode, setViewMode] = React.useState("grid")
+  const [favorites, setFavorites] = React.useState([])
+  const [cart, setCart] = React.useState([])
 
-  const toggleFavorite = (productId: number) => {
+  const toggleFavorite = (productId) => {
     setFavorites((prev) => (prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]))
   }
 
-  const addToCart = (productId: number) => {
+  const addToCart = (productId) => {
     setCart((prev) => [...prev, productId])
   }
 

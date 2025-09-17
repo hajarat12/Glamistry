@@ -9,24 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Star, ShoppingCart, Heart, Eye } from "lucide-react"
 
-interface ProductCardProps {
-  product: {
-    id: number
-    name: string
-    price: number
-    originalPrice?: number
-    image: string
-    category: string
-    brand: string
-    rating: number
-    reviews: number
-    description: string
-    inStock: boolean
-    featured: boolean
-  }
-}
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product }) {
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 

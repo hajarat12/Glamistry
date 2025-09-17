@@ -24,7 +24,7 @@ export function BookingSteps() {
     clientDetails: null,
   })
 
-  const updateBookingData = (key: string, value: any) => {
+  const updateBookingData = (key, value) => {
     setBookingData((prev) => ({ ...prev, [key]: value }))
   }
 

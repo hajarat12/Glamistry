@@ -57,14 +57,14 @@ export default function CheckoutPage() {
     total: 105.95,
   }
 
-  const handleInputChange = (field: string, value: string | boolean) => {
+  const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }))
     }
   }
 
-  const validateStep = (step: number) => {
+  const validateStep = (step) => {
     const newErrors = {}
 
     if (step === 1) {

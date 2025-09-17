@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Package, Heart, Calendar, ShoppingBag, Star } from "lucide-react"
-import { containerVariants, itemVariants } from "@/lib/motion-variants"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Package, Heart, Calendar, ShoppingBag, Star } from "lucide-react";
+import { containerVariants, itemVariants } from "@/lib/motion-variants";
 
 // Mock user data
 const userData = {
@@ -20,7 +20,7 @@ const userData = {
   totalOrders: 12,
   totalSpent: 847.5,
   loyaltyPoints: 1250,
-}
+};
 
 const recentOrders = [
   {
@@ -50,7 +50,7 @@ const recentOrders = [
       { name: "Luminous Highlighter Palette", quantity: 2, price: 28 },
     ],
   },
-]
+];
 
 const upcomingAppointments = [
   {
@@ -69,7 +69,7 @@ const upcomingAppointments = [
     status: "pending",
     price: 120,
   },
-]
+];
 
 const wishlistItems = [
   {
@@ -87,36 +87,47 @@ const wishlistItems = [
     image: "/professional-makeup-brushes-with-rose-gold.jpg",
     inStock: false,
   },
-]
+];
 
 export default function AccountPage() {
-  const [activeTab, setActiveTab] = useState("overview")
+  const [activeTab, setActiveTab] = useState("overview");
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case "delivered":
-        return "bg-green-100 text-green-800"
+        return "bg-green-100 text-green-800";
       case "shipped":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-100 text-blue-800";
       case "processing":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-100 text-yellow-800";
       case "confirmed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-100 text-green-800";
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-100 text-yellow-800";
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-100 text-gray-800";
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-8"
+        >
           {/* Header */}
-          <motion.div variants={itemVariants} className="flex items-center gap-6">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center gap-6"
+          >
             <Avatar className="h-20 w-20">
-              <AvatarImage src={userData.avatar || "/placeholder.svg"} alt={userData.name} />
+              <AvatarImage
+                src={userData.avatar || "/placeholder.svg"}
+                alt={userData.name}
+              />
               <AvatarFallback className="text-lg">
                 {userData.name
                   .split(" ")
@@ -125,14 +136,21 @@ export default function AccountPage() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">{userData.name}</h1>
+              <h1 className="text-3xl font-bold text-foreground">
+                {userData.name}
+              </h1>
               <p className="text-muted-foreground">{userData.email}</p>
-              <p className="text-sm text-muted-foreground">Member since {userData.memberSince}</p>
+              <p className="text-sm text-muted-foreground">
+                Member since {userData.memberSince}
+              </p>
             </div>
           </motion.div>
 
           {/* Stats Cards */}
-          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-4 gap-4"
+          >
             <Card>
               <CardContent className="p-6 text-center">
                 <Package className="h-8 w-8 text-primary mx-auto mb-2" />
@@ -157,15 +175,23 @@ export default function AccountPage() {
             <Card>
               <CardContent className="p-6 text-center">
                 <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="text-2xl font-bold">{upcomingAppointments.length}</p>
-                <p className="text-sm text-muted-foreground">Upcoming Bookings</p>
+                <p className="text-2xl font-bold">
+                  {upcomingAppointments.length}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Upcoming Bookings
+                </p>
               </CardContent>
             </Card>
           </motion.div>
 
           {/* Tabs */}
           <motion.div variants={itemVariants}>
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
               <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="orders">Orders</TabsTrigger>
@@ -182,13 +208,20 @@ export default function AccountPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {recentOrders.slice(0, 3).map((order) => (
-                        <div key={order.id} className="flex items-center justify-between p-4 border rounded-lg">
+                        <div
+                          key={order.id}
+                          className="flex items-center justify-between p-4 border rounded-lg"
+                        >
                           <div>
                             <p className="font-semibold">{order.id}</p>
-                            <p className="text-sm text-muted-foreground">{new Date(order.date).toLocaleDateString()}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {new Date(order.date).toLocaleDateString()}
+                            </p>
                           </div>
                           <div className="text-right">
-                            <Badge className={getStatusColor(order.status)}>{order.status}</Badge>
+                            <Badge className={getStatusColor(order.status)}>
+                              {order.status}
+                            </Badge>
                             <p className="font-semibold mt-1">${order.total}</p>
                           </div>
                         </div>
@@ -205,16 +238,28 @@ export default function AccountPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {upcomingAppointments.map((appointment) => (
-                        <div key={appointment.id} className="flex items-center justify-between p-4 border rounded-lg">
+                        <div
+                          key={appointment.id}
+                          className="flex items-center justify-between p-4 border rounded-lg"
+                        >
                           <div>
-                            <p className="font-semibold">{appointment.service}</p>
+                            <p className="font-semibold">
+                              {appointment.service}
+                            </p>
                             <p className="text-sm text-muted-foreground">
-                              {new Date(appointment.date).toLocaleDateString()} at {appointment.time}
+                              {new Date(appointment.date).toLocaleDateString()}{" "}
+                              at {appointment.time}
                             </p>
                           </div>
                           <div className="text-right">
-                            <Badge className={getStatusColor(appointment.status)}>{appointment.status}</Badge>
-                            <p className="font-semibold mt-1">${appointment.price}</p>
+                            <Badge
+                              className={getStatusColor(appointment.status)}
+                            >
+                              {appointment.status}
+                            </Badge>
+                            <p className="font-semibold mt-1">
+                              ${appointment.price}
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -234,23 +279,35 @@ export default function AccountPage() {
                         <div key={order.id} className="border rounded-lg p-6">
                           <div className="flex items-center justify-between mb-4">
                             <div>
-                              <p className="font-semibold text-lg">{order.id}</p>
+                              <p className="font-semibold text-lg">
+                                {order.id}
+                              </p>
                               <p className="text-muted-foreground">
-                                Ordered on {new Date(order.date).toLocaleDateString()}
+                                Ordered on{" "}
+                                {new Date(order.date).toLocaleDateString()}
                               </p>
                             </div>
                             <div className="text-right">
-                              <Badge className={getStatusColor(order.status)}>{order.status}</Badge>
-                              <p className="font-semibold text-lg mt-1">${order.total}</p>
+                              <Badge className={getStatusColor(order.status)}>
+                                {order.status}
+                              </Badge>
+                              <p className="font-semibold text-lg mt-1">
+                                ${order.total}
+                              </p>
                             </div>
                           </div>
                           <div className="space-y-2">
                             {order.items.map((item, index) => (
-                              <div key={index} className="flex justify-between text-sm">
+                              <div
+                                key={index}
+                                className="flex justify-between text-sm"
+                              >
                                 <span>
                                   {item.name} × {item.quantity}
                                 </span>
-                                <span>${(item.price * item.quantity).toFixed(2)}</span>
+                                <span>
+                                  ${(item.price * item.quantity).toFixed(2)}
+                                </span>
                               </div>
                             ))}
                           </div>
@@ -282,17 +339,31 @@ export default function AccountPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {upcomingAppointments.map((appointment) => (
-                        <div key={appointment.id} className="border rounded-lg p-6">
+                        <div
+                          key={appointment.id}
+                          className="border rounded-lg p-6"
+                        >
                           <div className="flex items-center justify-between mb-4">
                             <div>
-                              <p className="font-semibold text-lg">{appointment.service}</p>
+                              <p className="font-semibold text-lg">
+                                {appointment.service}
+                              </p>
                               <p className="text-muted-foreground">
-                                {new Date(appointment.date).toLocaleDateString()} at {appointment.time}
+                                {new Date(
+                                  appointment.date
+                                ).toLocaleDateString()}{" "}
+                                at {appointment.time}
                               </p>
                             </div>
                             <div className="text-right">
-                              <Badge className={getStatusColor(appointment.status)}>{appointment.status}</Badge>
-                              <p className="font-semibold text-lg mt-1">${appointment.price}</p>
+                              <Badge
+                                className={getStatusColor(appointment.status)}
+                              >
+                                {appointment.status}
+                              </Badge>
+                              <p className="font-semibold text-lg mt-1">
+                                ${appointment.price}
+                              </p>
                             </div>
                           </div>
                           <div className="flex gap-2">
@@ -333,7 +404,9 @@ export default function AccountPage() {
                           <div className="flex items-center gap-2 mb-4">
                             <span className="font-bold">${item.price}</span>
                             {item.originalPrice && (
-                              <span className="text-sm text-muted-foreground line-through">${item.originalPrice}</span>
+                              <span className="text-sm text-muted-foreground line-through">
+                                ${item.originalPrice}
+                              </span>
                             )}
                           </div>
                           <div className="flex gap-2">
@@ -359,5 +432,5 @@ export default function AccountPage() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

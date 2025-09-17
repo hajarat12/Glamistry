@@ -9,14 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import { Filter, X } from "lucide-react"
 
-interface ProductFilterProps {
-  onFilterChange: (filters: any) => void
-  sortBy: string
-  onSortChange: (sort: string) => void
-  totalProducts: number
-}
-
-export function ProductFilter({ onFilterChange, sortBy, onSortChange, totalProducts }: ProductFilterProps) {
+export function ProductFilter({ onFilterChange, sortBy, onSortChange, totalProducts }) {
   const [isOpen, setIsOpen] = useState(false)
   const [filters, setFilters] = useState({
     category: "all",
@@ -36,27 +29,27 @@ export function ProductFilter({ onFilterChange, sortBy, onSortChange, totalProdu
 
   const brands = ["Bella Beauty", "Rouge Studio", "Pro Artist", "Glow Beauty", "Shadow Co", "Line Perfect"]
 
-  const handleFilterUpdate = (newFilters: any) => {
+  const handleFilterUpdate = (newFilters) => {
     setFilters(newFilters)
     onFilterChange(newFilters)
   }
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category   ) => {
     const newFilters = { ...filters, category }
     handleFilterUpdate(newFilters)
   }
 
-  const handlePriceChange = (priceRange: number[]) => {
+  const handlePriceChange = (priceRange) => {
     const newFilters = { ...filters, priceRange }
     handleFilterUpdate(newFilters)
   }
 
-  const handleStockChange = (inStock: boolean) => {
+  const handleStockChange = (inStock) => {
     const newFilters = { ...filters, inStock }
     handleFilterUpdate(newFilters)
   }
 
-  const handleBrandChange = (brand: string, checked: boolean) => {
+  const handleBrandChange = (brand, checked) => {
     const newBrands = checked ? [...filters.brands, brand] : filters.brands.filter((b) => b !== brand)
     const newFilters = { ...filters, brands: newBrands }
     handleFilterUpdate(newFilters)

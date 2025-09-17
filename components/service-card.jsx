@@ -5,23 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, DollarSign, Check } from "lucide-react"
 import Link from "next/link"
 
-interface Service {
-  id: number
-  title: string
-  duration: string
-  price: number
-  category: string
-  occasion: string
-  description: string
-  features: string[]
-  image: string
-}
-
-interface ServiceCardProps {
-  service: Service
-}
-
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service }) {
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden h-full">
       <div className="relative overflow-hidden">
@@ -30,7 +14,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
           alt={service.title}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">{service.category}</Badge>
+        <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">{service.category || 'Service'}</Badge>
       </div>
 
       <CardContent className="p-6 flex flex-col h-full">

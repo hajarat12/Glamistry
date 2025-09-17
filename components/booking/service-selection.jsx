@@ -39,14 +39,8 @@ const services = [
   },
 ]
 
-interface ServiceSelectionProps {
-  selectedService: any
-  onServiceSelect: (service: any) => void
-  onNext: () => void
-}
-
-export function ServiceSelection({ selectedService, onServiceSelect, onNext }: ServiceSelectionProps) {
-  const handleServiceSelect = (service: any) => {
+export function ServiceSelection({ selectedService, onServiceSelect, onNext }) {
+  const handleServiceSelect = (service) => {
     onServiceSelect(service)
   }
 

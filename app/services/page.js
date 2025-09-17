@@ -10,33 +10,41 @@ const services = [
     id: 1,
     title: "Bridal Makeup",
     description: "Complete bridal makeup package including trial session, wedding day application, and touch-up kit.",
-    price: "$350",
+    price: 350,
     duration: "3-4 hours",
     image: "/bridal-makeup-elegant-bride.jpg",
+    category: "Bridal",
+    features: ["Trial session included", "Wedding day application", "Touch-up kit provided", "Professional consultation"]
   },
   {
     id: 2,
     title: "Special Event Makeup",
     description: "Professional makeup for special occasions, parties, photoshoots, and formal events.",
-    price: "$150",
+    price: 150,
     duration: "1-2 hours",
     image: "/glamorous-evening-makeup.jpg",
+    category: "Event",
+    features: ["Professional application", "Long-lasting formula", "Photo-ready finish", "Style consultation"]
   },
   {
     id: 3,
     title: "Makeup Lessons",
     description: "Personal makeup lessons to learn techniques and find your perfect look.",
-    price: "$120",
+    price: 120,
     duration: "2 hours",
     image: "/makeup-tutorial-lesson.jpg",
+    category: "Education",
+    features: ["One-on-one instruction", "Product recommendations", "Technique guidance", "Take-home tips"]
   },
   {
     id: 4,
     title: "Group Sessions",
     description: "Fun makeup sessions for groups, perfect for bridal parties or special celebrations.",
-    price: "$100/person",
+    price: 100,
     duration: "2-3 hours",
     image: "/group-makeup-session-friends.jpg",
+    category: "Group",
+    features: ["Group discount", "Fun atmosphere", "Professional application", "Perfect for parties"]
   },
 ]
 

@@ -36,7 +36,7 @@ export default function ProfilePage() {
 
   const [isEditing, setIsEditing] = useState(false)
 
-  const handleInputChange = (field: string, value: string | boolean | string[]) => {
+  const handleInputChange = (field, value) => {
     if (field.includes(".")) {
       const [parent, child] = field.split(".")
       setFormData((prev) => ({
@@ -51,7 +51,7 @@ export default function ProfilePage() {
     }
   }
 
-  const handleSkinConcernChange = (concern: string, checked: boolean) => {
+  const handleSkinConcernChange = (concern, checked) => {
     setFormData((prev) => ({
       ...prev,
       skinConcerns: checked ? [...prev.skinConcerns, concern] : prev.skinConcerns.filter((c) => c !== concern),

@@ -8,15 +8,6 @@ import { ChevronLeft, ChevronRight, Clock } from "lucide-react"
 
 const timeSlots = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"]
 
-interface DateTimeSelectionProps {
-  selectedDate: Date | null
-  selectedTime: string | null
-  onDateSelect: (date: Date) => void
-  onTimeSelect: (time: string) => void
-  onNext: () => void
-  onPrev: () => void
-}
-
 export function DateTimeSelection({
   selectedDate,
   selectedTime,
@@ -24,10 +15,10 @@ export function DateTimeSelection({
   onTimeSelect,
   onNext,
   onPrev,
-}: DateTimeSelectionProps) {
+}) {
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
-  const isTimeSlotAvailable = (time: string) => {
+  const isTimeSlotAvailable = (time) => {
     // Mock availability logic - in real app, this would check against backend
     const unavailableSlots = ["11:00 AM", "2:00 PM", "4:00 PM"]
     return !unavailableSlots.includes(time)

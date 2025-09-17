@@ -51,7 +51,7 @@ export default function CartPage() {
   const [promoCode, setPromoCode] = useState("")
   const [promoApplied, setPromoApplied] = useState(false)
 
-  const updateQuantity = (id: number, newQuantity: number) => {
+  const updateQuantity = (id, newQuantity) => {
     if (newQuantity === 0) {
       removeItem(id)
       return
@@ -61,7 +61,7 @@ export default function CartPage() {
     )
   }
 
-  const removeItem = (id: number) => {
+  const removeItem = (id) => {
     setCartItems((items) => items.filter((item) => item.id !== id))
   }
 
